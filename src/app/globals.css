@@ -1,0 +1,263 @@
+@import "tailwindcss";
+
+/* ─── VOXY Design System ─────────────────────────────────────────────────────── */
+
+@theme {
+  /* Colors — obsidian foundation, amber accent */
+  --color-vx-void: #050508;
+  --color-vx-base: #080810;
+  --color-vx-raised: #0d0d1a;
+  --color-vx-surface: #121220;
+  --color-vx-overlay: #1a1a2e;
+  --color-vx-border: #1e1e30;
+  --color-vx-border-hover: #2a2a40;
+  --color-vx-border-focus: #3d3d5c;
+
+  /* Text */
+  --color-vx-text-primary: #f0f0f8;
+  --color-vx-text-secondary: #9090b0;
+  --color-vx-text-muted: #50506a;
+  --color-vx-text-accent: #c8b8ff;
+
+  /* Accent — restrained violet-amber */
+  --color-vx-accent: #7c6aff;
+  --color-vx-accent-dim: #4a3fcc;
+  --color-vx-accent-hover: #9580ff;
+  --color-vx-amber: #f5a623;
+  --color-vx-amber-dim: #8a5c0f;
+
+  /* System states */
+  --color-vx-success: #22c55e;
+  --color-vx-warning: #f59e0b;
+  --color-vx-error: #ef4444;
+  --color-vx-info: #3b82f6;
+
+  /* Typography */
+  --font-display: "Inter var", "Inter", system-ui, -apple-system, sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", "Cascadia Code", ui-monospace, monospace;
+
+  /* Spacing tokens */
+  --spacing-1: 0.25rem;
+  --spacing-2: 0.5rem;
+  --spacing-3: 0.75rem;
+  --spacing-4: 1rem;
+  --spacing-6: 1.5rem;
+  --spacing-8: 2rem;
+  --spacing-12: 3rem;
+  --spacing-16: 4rem;
+  --spacing-20: 5rem;
+  --spacing-24: 6rem;
+  --spacing-32: 8rem;
+  --spacing-40: 10rem;
+  --spacing-48: 12rem;
+
+  /* Radii */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 24px;
+
+  /* Motion */
+  --duration-instant: 80ms;
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+  --duration-slow: 400ms;
+  --duration-cinematic: 800ms;
+
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-cinematic: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ─── Base Reset ─────────────────────────────────────────────────────────────── */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "ss01" 1;
+}
+
+body {
+  background-color: var(--color-vx-void);
+  color: var(--color-vx-text-primary);
+  font-family: var(--font-body);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ─── Focus Visible ──────────────────────────────────────────────────────────── */
+
+:focus-visible {
+  outline: 2px solid var(--color-vx-accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ─── Selection ──────────────────────────────────────────────────────────────── */
+
+::selection {
+  background: color-mix(in srgb, var(--color-vx-accent) 30%, transparent);
+  color: var(--color-vx-text-primary);
+}
+
+/* ─── Scrollbar ──────────────────────────────────────────────────────────────── */
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-vx-base);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-vx-border-hover);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-vx-border-focus);
+}
+
+/* ─── Custom Properties for JS ───────────────────────────────────────────────── */
+
+:root {
+  --mouse-x: 0.5;
+  --mouse-y: 0.5;
+}
+
+/* ─── Typography Scale ───────────────────────────────────────────────────────── */
+
+.vx-display {
+  font-size: clamp(3rem, 8vw, 7rem);
+  font-weight: 600;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  font-family: var(--font-display);
+}
+
+.vx-h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+}
+
+.vx-h2 {
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.vx-h3 {
+  font-size: clamp(1.125rem, 2vw, 1.5rem);
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+}
+
+.vx-body-lg {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  letter-spacing: -0.01em;
+}
+
+.vx-body {
+  font-size: 1rem;
+  line-height: 1.65;
+  letter-spacing: -0.005em;
+}
+
+.vx-body-sm {
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.vx-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.vx-mono {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  letter-spacing: -0.02em;
+}
+
+/* ─── Component Utilities ────────────────────────────────────────────────────── */
+
+.vx-surface {
+  background: var(--color-vx-surface);
+  border: 1px solid var(--color-vx-border);
+}
+
+.vx-surface-hover {
+  background: var(--color-vx-overlay);
+  border-color: var(--color-vx-border-hover);
+}
+
+.vx-glow-accent {
+  box-shadow: 0 0 40px -10px color-mix(in srgb, var(--color-vx-accent) 40%, transparent);
+}
+
+.vx-glow-amber {
+  box-shadow: 0 0 40px -10px color-mix(in srgb, var(--color-vx-amber) 30%, transparent);
+}
+
+/* ─── Reduced Motion ─────────────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ─── Canvas / WebGL ─────────────────────────────────────────────────────────── */
+
+canvas {
+  display: block;
+  touch-action: none;
+}
+
+/* ─── Noise texture overlay ──────────────────────────────────────────────────── */
+
+.vx-noise::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+/* ─── Gradient masks ─────────────────────────────────────────────────────────── */
+
+.vx-fade-bottom {
+  -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+}
+
+.vx-fade-top {
+  -webkit-mask-image: linear-gradient(to top, black 60%, transparent 100%);
+  mask-image: linear-gradient(to top, black 60%, transparent 100%);
+}
